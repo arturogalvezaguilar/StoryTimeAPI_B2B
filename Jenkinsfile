@@ -9,7 +9,7 @@ environment {
 }
 
 try {
-  stage('linux') {
+  node('principal') {
     wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm', 'defaultFg': 1, 'defaultBg': 2]) {
       ws(getWorkspace()) {
         workspace = pwd()
