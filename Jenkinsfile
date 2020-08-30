@@ -9,7 +9,9 @@ environment {
 }
 /**/
 try {
- 
+ pipeline {
+   agent any
+
     stages{
 stage('Pasos'){
     steps{
@@ -80,6 +82,8 @@ stage('Pasos'){
   }
         
     }
+     
+ }
 
   /*slackSend channel: 'kantoo-ci', message: "*Build success* ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) 🚀", color: "good"*/
   currentBuild.result = 'SUCCESS'
