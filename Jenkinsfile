@@ -50,7 +50,7 @@ stage('Pasos'){
         unzip zipFile: 'kantoo.api.nodejs.zip', dir: 'src/aws-lambda-nodejs', quiet: true
             sh 'whoami'
         
-            sh 'cd ./deployment && sudo chmod u+x deploy.sh && ./deploy.sh'
+            sh 'cd ./deployment && ./deploy.sh'
            
       }
   } 
