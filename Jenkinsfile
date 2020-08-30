@@ -4,9 +4,7 @@
 
     stages{
 stage('Pasos'){
-    steps{
-   
-      ws(getWorkspace()) {  
+    steps{ 
 
         deleteDir()
 
@@ -25,7 +23,7 @@ stage('Pasos'){
 
       }
     }
-    }
+   
  
 
   /*stage('Build') {
