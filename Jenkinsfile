@@ -29,7 +29,7 @@ stage('Pasos'){
     }
  
 
-  stage('Build') {
+  /*stage('Build') {
 
      parallel(
       'nodejs': {
@@ -50,7 +50,7 @@ stage('Pasos'){
       }
     )
   }
-
+*/
   /*stage('Terraform') {
     node('docker') {
       wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm', 'defaultFg': 1, 'defaultBg': 2]) {
