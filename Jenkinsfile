@@ -23,6 +23,19 @@ stage('Pasos'){
 
       }
     }
+     
+     stage('Build') { 
+      steps{
+          deleteDir()
+          unstash 'nodejs'
+          sh "cd src/aws-lambda-nodejs && npm install && npm run build"
+          sh "cd src/aws-lambda-nodejs && rm -r node_modules && npm install --production"
+          zip zipFile: 'kantoo.api.nodejs.zip', archive: false, dir: 'src/aws-lambda-nodejs'
+          archiveArtifacts artifacts: '*.zip', fingerprint: true
+          stash name: 'nodejs_dist', includes: "kantoo.api.nodejs.zip"
+      }
+        } 
+     
    
  
 
