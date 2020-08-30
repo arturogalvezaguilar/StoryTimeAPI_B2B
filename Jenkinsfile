@@ -7,7 +7,7 @@ stage('Pasos'){
     steps{
    
       ws(getWorkspace()) {
-        workspace = pwd()
+        def workspace = pwd()
 
         deleteDir()
 
@@ -51,7 +51,7 @@ stage('Pasos'){
     )
   }
 
-  stage('Terraform') {
+  /*stage('Terraform') {
     node('docker') {
       wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm', 'defaultFg': 1, 'defaultBg': 2]) {
         deleteDir()
@@ -69,7 +69,7 @@ stage('Pasos'){
           }
       }
     }
-  }
+  }*/
         
     }
      
