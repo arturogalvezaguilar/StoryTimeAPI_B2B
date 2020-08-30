@@ -38,32 +38,9 @@ stage('Pasos'){
      
    
  
-
-  /*stage('Build') {
-
-     parallel(
-      'nodejs': {
-        node('node') {
-          deleteDir()
-
-          unstash 'nodejs'
-          sh "cd src/aws-lambda-nodejs && npm install && npm run build"
-          sh "cd src/aws-lambda-nodejs && rm -r node_modules && npm install --production"
-
-
-          zip zipFile: 'kantoo.api.nodejs.zip', archive: false, dir: 'src/aws-lambda-nodejs'
-
-          archiveArtifacts artifacts: '*.zip', fingerprint: true
-
-          stash name: 'nodejs_dist', includes: "kantoo.api.nodejs.zip"
-        }
-      }
-    )
-  }
-*/
-  /*stage('Terraform') {
-    node('docker') {
-      wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm', 'defaultFg': 1, 'defaultBg': 2]) {
+ 
+  stage('Terraform') {
+    steps('Pasos') { 
         deleteDir()
 
         unstash 'nodejs_dist'
@@ -72,14 +49,11 @@ stage('Pasos'){
 
         unzip zipFile: 'kantoo.api.nodejs.zip', dir: 'src/aws-lambda-nodejs', quiet: true
 
-        docker
-          .image('hashicorp/terraform')
-          .withRun() { c->
+        
             sh 'cd ./deployment && sudo chmod u+x deploy.sh && ./deploy.sh'
-          }
+           
       }
-    }
-  }*/
+  } 
         
     }
      
