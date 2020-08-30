@@ -6,8 +6,7 @@
 stage('Pasos'){
     steps{
    
-      ws(getWorkspace()) {
-        def workspace = pwd()
+      ws(getWorkspace()) {  
 
         deleteDir()
 
