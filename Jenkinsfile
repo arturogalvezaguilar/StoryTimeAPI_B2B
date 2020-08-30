@@ -7,10 +7,13 @@ environment {
     AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
     AWS_DEFAULT_REGION = credentials('AWS_DEFAULT_REGION')
 }
-
+/**/
 try {
-  node('principal') {
-    wrap([$class: 'AnsiColorBuildWrapper', 'colorMapName': 'XTerm', 'defaultFg': 1, 'defaultBg': 2]) {
+ 
+    stages{
+stage('Pasos'){
+    steps{
+   
       ws(getWorkspace()) {
         workspace = pwd()
 
@@ -31,7 +34,8 @@ try {
 
       }
     }
-  }
+    }
+ 
 
   stage('Build') {
 
@@ -74,6 +78,8 @@ try {
       }
     }
   }
+        
+    }
 
   /*slackSend channel: 'kantoo-ci', message: "*Build success* ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) 🚀", color: "good"*/
   currentBuild.result = 'SUCCESS'
