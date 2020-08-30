@@ -1,14 +1,4 @@
-def getWorkspace() {
-    pwd().replace("%2F", "_")
-}
-
-environment {
-    AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
-    AWS_DEFAULT_REGION = credentials('AWS_DEFAULT_REGION')
-}
-/**/
-try {
+ 
  pipeline {
    agent any
 
@@ -85,17 +75,4 @@ stage('Pasos'){
      
  }
 
-  /*slackSend channel: 'kantoo-ci', message: "*Build success* ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>) 🚀", color: "good"*/
-  currentBuild.result = 'SUCCESS'
-} catch (e) {
-  /*slackSend channel: 'kantoo-ci', message: "*Build failed* ${env.JOB_NAME} #${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", color: "danger"*/
-  currentBuild.result = 'FAILURE'
-  throw e
-} finally {
-  /*if (env.TF_VAR_env_name == "prod" || env.TF_VAR_env_name == "qa") {
-    node {
-      println currentBuild.result  // this prints null
-      step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'denysenkoa@mydigicode.com, uri.z@la-mark.com', sendToIndividuals: true])
-    }
-  }*/
-}
+ 
